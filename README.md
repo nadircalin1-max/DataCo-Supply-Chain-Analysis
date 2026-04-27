@@ -73,7 +73,7 @@ not just a calculation.
 
 ## Files
 
-- `DataCo_Supply_Chain_Analysis.xlsx` full workbook including raw data, 
+- [DataCo_Supply_Chain_Analysis.xlsx](https://docs.google.com/spreadsheets/d/1dnt5muRa5PyRtaXqJDHBkDopIDd5L16G/edit?usp=sharing&ouid=105722416914194764069&rtpof=true&sd=true) full workbook including raw data, 
   working sheet and dashboard
 - `dashboard.png` screenshot of the final dashboard
 
