@@ -1,12 +1,12 @@
 # DataCo Supply Chain Analysis
 
-## What This Project Is About
+## About This Project
 
-I wanted to take a large real-world dataset and treat it like an actual 
-business problem, not just build charts for the sake of it. 
-The DataCo dataset has 180,000+ supply chain orders and I used it to 
-find out where the business was losing money and why delivery performance 
-was so poor.
+This is one of my portfolio projects as I transition into data analytics. 
+I chose a supply chain dataset because I wanted to work with something 
+that had real business complexity, not a clean tutorial dataset. 
+The goal was to go beyond surface level analysis and actually question 
+the numbers before presenting them.
 
 ## Tools Used
 - Excel: data cleaning, PivotTables, KPI dashboard, charts
@@ -19,48 +19,61 @@ Source: [DataCo Smart Supply Chain for Big Data Analysis on Kaggle](https://www.
 
 ## What I Found
 
-**Delivery is a serious problem**
-Over half of all orders arrive late, 57.3% to be exact. That is not 
-a minor issue, that is a fundamental operations failure. Standard Class 
-shipping accounts for 60% of all orders and averages 4 days, which 
-explains a lot.
+**Delivery performance is the biggest operational issue**
+57.3% of orders arrived late. I initially calculated this as 54.8% but 
+realised I was including cancelled orders in the denominator. Cancelled 
+orders never entered the shipping process so I removed them before 
+recalculating. Small methodological decisions like this change the 
+numbers and matter in a real business context.
 
-**The profit picture is more complicated than it looks**
-Net profit is $3.8M which sounds fine until you break it down. 
-Gross profit is actually $7.5M but $3.7M in losses nearly wipes it out. 
-Nearly 1 in 5 orders loses money. That is not noise, that needs fixing.
+**The profit figure hides a bigger problem**
+The headline net profit of $3.8M looks acceptable until you separate 
+it out. Gross profit is $7.5M but $3.7M in losses almost cancels it out 
+entirely. Nearly 1 in 5 orders is loss making. A business relying on 
+that net figure alone would not see how close to breakeven it actually is.
 
-**A few categories carry everyone else**
-Fishing alone generates $731k, almost 20% of total profit. 
-The top 3 categories (Fishing, Cleats, Camping and Hiking) account for 
-42% of all profit. The bottom 40 categories combined barely move the needle.
+**A small number of categories drive most of the profit**
+Fishing generates $731k on its own, almost 20% of total profit. 
+The top 3 categories account for 42% of profit combined. 
+The remaining 47 categories contribute the rest. 
+That kind of concentration is worth flagging to any stakeholder.
 
-**Europe and LATAM are where the money is**
-Together they generate over $2.2M in profit. Africa brings in $240k 
-despite having a reasonable order volume, a margin problem worth 
-investigating.
+**Europe and LATAM lead on profitability**
+Together they generate over $2.2M in profit. Africa generates $240k 
+despite decent order volumes which points to a margin problem 
+rather than a demand problem.
 
-**The average order value was being understated**
-Row level averaging gave $203 per order. When I grouped by Order ID 
-properly the real figure was $1,119. That is a significant difference 
-and the kind of thing that leads to bad pricing decisions if left 
-uncorrected.
+**Average order value needed correcting**
+My first calculation gave $203 per order. I then noticed the dataset 
+had multiple line items per order so I was averaging at row level, 
+not order level. Grouping by Order ID first gave the correct figure 
+of $1,119. That is the kind of error that is easy to miss and 
+significant enough to affect business decisions if it does.
 
-## How I Approached It
+## My Approach
 
-- Removed cancelled orders before calculating delivery rate. They never 
-  entered the shipping process so including them would skew the metric
-- Calculated profit at three levels: gross, losses and net. The headline 
-  number alone tells you nothing
-- Recalculated average order value at order level not row level. Each 
-  order has multiple line items so row level averaging overstates volume 
-  and understates value
-- Built the dashboard to show findings at a glance without needing to 
-  dig into the data
+- Kept the raw data untouched and built a separate working sheet 
+  for all cleaning and analysis
+- Removed cancelled orders before calculating delivery performance 
+  and documented why
+- Broke profit into three components rather than reporting the 
+  net figure alone
+- Corrected the average order value calculation after identifying 
+  the row level vs order level issue
+- Built a KPI dashboard summarising the key findings for a 
+  non technical audience
+
+## What I Learned
+
+Working through this project taught me that the most important 
+analytical skill is not knowing which formula to use. It is knowing 
+when to question your own output before presenting it. 
+Every key metric in this project required a judgement call, 
+not just a calculation.
 
 ## Files
 
-- `DataCo_Supply_Chain_Analysis.xlsx` full workbook with raw data, 
+- `DataCo_Supply_Chain_Analysis.xlsx` full workbook including raw data, 
   working sheet and dashboard
 - `dashboard.png` screenshot of the final dashboard
 
